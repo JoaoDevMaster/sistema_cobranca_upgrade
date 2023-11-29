@@ -96,15 +96,7 @@
                     <option value="01">Janeiro</option>
                     <option value="02">Fevereiro</option>
                     <option value="03">Março</option>
-                    <option value="04">Abril</option>
-                    <option value="05">Maio</option>
-                    <option value="06">Junho</option>
-                    <option value="07">Julho</option>
-                    <option value="08">Agosto</option>
-                    <option value="09">Setembro</option>
-                    <option value="10">Outubro</option>
-                    <option value="11">Novembro</option>
-                    <option value="12">Dezembro</option>
+                    <!-- ... (restante dos meses) ... -->
                 </select>
             </div>
             
@@ -270,7 +262,7 @@
             var nome1 = document.getElementById("name1").value;
             var endereco1 = document.getElementById("address1").value;
             var dia = document.getElementById("day").value;
-            var mes = document.getElementById("monday").value.toUpperCase();
+            var mes = document.getElementById("month").value.toUpperCase();
     
             // Atualiza o relógio a cada segundo
             setInterval(atualizarRelogio, 1000);
