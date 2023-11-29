@@ -100,6 +100,7 @@
             <div class="d-flex">
                 <div class="mensagem1 container" style="font-family: 'Times New Roman', Times, serif;"></div>
                 <div class="mensagem2 container" style="font-family: 'Times New Roman', Times, serif;"></div>
+                <div class="mensagem3 container" style="font-family: 'Times New Roman', Times, serif;"></div>
                 <div id="relogio"></div>
             </div>
         </div>
@@ -305,9 +306,51 @@
             // Imprimir a primeira mensagem
             imprimirMensagem(mensagem1);
     
-            // Mensagem para o Cliente 2
+            // Mensagem para o Cliente 1
             var mensagem2 = document.querySelector(".mensagem2");
             mensagem2.innerHTML = `
+            <div style="font-family: 'Times New Roman', Times, serif;font-size:20px;" class="container">
+                <br>
+                <div style="text-align:center; font-size:20px; font-family: 'Courier New';">
+                     
+                    ${nome1}<br>
+                    ${endereco1}
+                    <hr>
+                </div>
+                <br>
+                <br>
+                <div style="text-align:center;text-decoration: underline;">
+                    <center><h3>CARTA DE COBRANÇA!</h3></center>
+                </div>
+                <br>
+                <div>
+                    
+                   
+                    Prezado Sr.(a)<br>
+                    <div style="text-transform:uppercase; font-size:25px">${nome1}</div>
+                </div>
+                <br>
+                <p>
+                   <span> Não consta em nosso registro, o pagamento de sua(s) mensalidade(s) vencida(s).</span>
+                   <br>
+                   <br>
+                   <span>Como não recebemos nenhuma comunicação sobre os motivos de atraso, solicitamos que entre em contato o quanto antes para negociações</span>
+                   <br>
+                   <br>
+                   <span  style="font-family: 'Noto Sans', sans-serif;"><b>CASO JÁ TENHA EFETUADO O PAGAMENTO, FAVOR DESCONSIDERAR ESTA CARTA!</b></span>
+                   <br><br><br>Atenciosamente,<br><br>DIREÇÃO DA NEWFIBER<br>(37) 3226-9519.
+                </p>
+                <br>
+                <span style="font-size:15px">Itaúna, ${dia} de ${mes} de 2023</span>
+            </div>
+            `;
+    
+            // Imprimir a primeira mensagem
+            imprimirMensagem(mensagem2);
+    
+            // Mensagem para o Cliente 2
+            var mensagem3 = document.querySelector(".mensagem3");
+            mensagem3.innerHTML = `
        
             <div style="font-family: 'Times New Roman', Times, serif; font-size: 18px;" class="container">
                 <br><br>
@@ -336,7 +379,7 @@
             `;
     
             // Imprimir a segunda mensagem
-            imprimirMensagem(mensagem2);
+            imprimirMensagem(mensagem3);
     
             // Imprimir as mensagens de boletos
             var printContents = document.querySelector(".printableArea").innerHTML;
