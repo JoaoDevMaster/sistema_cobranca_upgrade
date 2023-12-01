@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewFiber - Carta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:wght@500&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-rlaPZChqH3MWf4PX9gyjCUxWgd9OHjfj+AM5uJDr+rR3FR0q23h26p4U6L6/k5h9guhL8JkEVCjbYI3eNW5/7Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+        }
+        .nav-link{
+            color:#ff9006;
+        }
+        .nav-link:hover{
+            color:#000;
+        }
+
+        @media print {
+            .printableArea,
+            .printableArea * {
+                visibility: visible;
+            }
+
+            img {
+                display: block;
+            }
+
+            body * {
+                color: black;
+            }
+        }
+
+        .btn-primary {
+            background-color: #ff9006;
+            border: #ff9006;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff9006;
+            border: #ff9006;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="nav nav-tabs" id="myTabs">
+        <li class="nav-item">
+            <a class="nav-link " href="index.html">Upgrade de Cobrança</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="boletos.html">Atualização de Boletos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="cobranca.html">Carta de Cobrança</a>
+        </li>
+    </ul>
+    <div class="container mt-5">
+        <h5 class="modal-title">Atualização de Boletos</h5>
+        <br>
+        <form action="proce.php" method="post">
+            <div class="mb-3">
+                <label for="name1" class="form-label">Nome do Cliente </label>
+                <input type="text" class="form-control" style="background-color: rgb(255, 255, 255);text-transform:uppercase" id="name1"
+                    placeholder="Nome do Cliente">
+            </div>
+            <div class="mb-3">
+                <label for="address1" class="form-label">Endereço </label>
+                <input type="text" class="form-control" style="background-color: rgb(255, 255, 255);text-transform:uppercase" id="address1"
+                    placeholder="Exemplo: R. Josias Machado, 94 - Centro, Itaúna">
+            </div>
+            <div class="mb-3">
+                <label for="day" class="form-label">Dia </label>
+                <input type="number" class="form-control" style="background-color: rgb(255, 255, 255);" id="day"
+                    placeholder="Data de lançamento da carta">
+            </div>
+            <div class="mb-3">
+                <label for="month" class="form-label">Mês</label>
+                <select class="form-select" style="background-color: rgb(255, 255, 255);" id="month">
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                    <!-- ... (restante dos meses) ... -->
+                </select>
+            </div>
+            
+            <button type="button" onclick="gerarEImprimir()" class="btn btn-primary">Gerar e Imprimir Mensagens de Boletos</button>
+        </form>
+        <div class="printableArea mt-5">
+            <div class="d-flex">
+                <div class="mensagem1 container" style="font-family: 'Times New Roman', Times, serif;"></div>
+                <div class="mensagem2 container" style="font-family: 'Times New Roman', Times, serif;"></div>
+                <div class="mensagem3 container" style="font-family: 'Times New Roman', Times, serif;"></div>
+                <div id="relogio"></div>
+            </div>
+        </div>
+    </div>
+    <!-- <script>
+        function atualizarRelogio() {
+            var dataAtual = new Date();
+            var horas = dataAtual.getHours();
+            var minutos = dataAtual.getMinutes();
+            var segundos = dataAtual.getSeconds();
+
+            // Adiciona um zero à esquerda se for menor que 10
+            horas = horas < 10 ? '0' + horas : horas;
+            minutos = minutos < 10 ? '0' + minutos : minutos;
+            segundos = segundos < 10 ? '0' + segundos : segundos;
+
+            var horario = horas + ':' + minutos + ':' + segundos;
+
+            var data = dataAtual.toLocaleDateString('pt-BR'); // Adiciona a data
+        }
+        function imprimirMensagem(mensagem) {
+            var printContents = mensagem.innerHTML;
+            var originalContents = document.body.innerHTML;
+    
+            document.body.innerHTML = printContents;
+    
+            window.print();
+    
+            document.body.innerHTML = originalContents;
+        }
+    
+        function gerarEImprimir() {
+            var nome1 = document.getElementById("name1").value;
+            var endereco1 = document.getElementById("address1").value;
+            var dia = document.getElementById("day").value;
+            var mes = document.getElementById("monday").value.toUpperCase();
+
+            // Atualiza o relógio a cada segundo
+            setInterval(atualizarRelogio, 1000);
+
+            // Inicializa o relógio
+            atualizarRelogio();
+
+            // Mensagem para o Cliente 1
+            var mensagem1 = document.querySelector(".mensagem1");
+            mensagem1.innerHTML =
+                `
+            <div style="font-family: 'Times New Roman', Times, serif;font-size:23px">
+                <br>
+                <div style="text-align:center; font-size:20px; font-family: 'Courier New';">
+                    ${nome1}<br>
+                    ${endereco1}
+                    <hr>
+                </div>
+                <br>
+                <br>
+                <div style="text-align:center;text-decoration: underline;">
+                    <center><h3>CARTA DE COBRANÇA!</h3></center>
+                </div>
+                <br>
+                <br>
+                <div>
+                    Prezado Sr.(a)<br>
+                    <div style="text-transform:uppercase; font-size:25px">${nome1}</div>
+                </div>
+                <br>
+                <p>
+                   <span> Não consta em nosso registro, o pagamento de sua(s) mensalidade(s) vencida(s).</span>
+                   <br>
+                   <br>
+                   <span>Como não recebemos nenhuma comunicação sobre os motivos de upgrade, solicitamos que entre em contato o quanto antes para negociações</span>
+                   <br>
+                   <br>
+                   <span style="font-family: 'Noto Sans', sans-serif;"><b>CASO JÁ TENHA EFETUADO O PAGAMENTO, FAVOR DESCONSIDERAR ESTA CARTA</b></span>
+                    <br><br>Atenciosamente,<br><br><br>DIREÇÃO DA NEWFIBER<br>37 3226-9519.
+                </p>
+                <br>
+                <span style="font-size:15px">Itaúna, ${dia} de ${mes} de 2023</span>
+            </div>
+            
+            `;
+                  // Imprimir a segunda mensagem
+        imprimirMensagem(mensagem2);
+            var mensagem2 = document.querySelector(".mensagem2");
+            mensagem2.innerHTML =
+                `
+            <div style="font-family: 'Times New Roman', Times, serif;font-size:23px">
+                <br>
+                <br>
+                <div style="text-align:center; font-size:20px; font-family: 'Courier New';">
+                    ${nome1}<br>
+                    ${endereco1}
+                    <hr>
+                </div>
+                <br>
+                <br>
+                <div style="text-align:center;text-decoration: underline;">
+                    <center><h3>CARTA DE tyeste!</h3></center>
+                </div>
+                <br>
+                <br>
+                <div>
+                    Prezado Sr.(a)<br>
+                    <div style="text-transform:uppercase; font-size:25px">${nome1}</div>
+                </div>
+                <br>
+                <p>
+                   <span> Não consta em nosso registro, o pagamento de sua(s) mensalidade(s) vencida(s).</span>
+                   <br>
+                   <br>
+                   <span>Como não recebemos nenhuma comunicação sobre os motivos de atraso, solicitamos que entre em contato o quanto antes para negociações</span>
+                   <br>
+                   <br>
+                   <span><b>CASO JÁ TENHA EFETUADO O PAGAMENTO, FAVOR DESCONSIDERAR ESTA CARTA</b></span>
+                   <br><br><br>Atenciosamente,<br><br><br>DIREÇÃO DA NEWFIBER<br>37 3226-9519.
+                </p>
+                <br>
+                <span style="font-size:15px">Itaúna, ${dia} de ${mes} de 2023</span>
+            </div>
+            
+            `;
+                  // Imprimir a segunda mensagem
+        imprimirMensagem(mensagem2);
+
+            // Imprimir as mensagens de boletos
+            var printContents = document.querySelector(".printableArea").innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+    </script> -->
+    <script>
+        function atualizarRelogio() {
+            // ... (unchanged)
+        }
+    
+        function imprimirMensagem(mensagem) {
+            var printContents = mensagem.innerHTML;
+            var originalContents = document.body.innerHTML;
+    
+            document.body.innerHTML = printContents;
+    
+            window.print();
+    
+            document.body.innerHTML = originalContents;
+        }
+    
+        function gerarEImprimir() {
+            var nome1 = document.getElementById("name1").value;
+            var endereco1 = document.getElementById("address1").value;
+            var dia = document.getElementById("day").value;
+            var mes = document.getElementById("month").value.toUpperCase();
+    
+            // Atualiza o relógio a cada segundo
+            setInterval(atualizarRelogio, 1000);
+    
+            // Inicializa o relógio
+            atualizarRelogio();
+    
+            // Mensagem para o Cliente 1
+            var mensagem1 = document.querySelector(".mensagem1");
+            mensagem1.innerHTML = `
+            <div style="font-family: 'Times New Roman', Times, serif;font-size:20px;" class="container">
+                <br>
+                <div style="text-align:center;text-transform:uppercase; font-size:20px; font-family: 'Courier New'; ">
+                     
+                    ${nome1}<br>
+                    ${endereco1}
+                    <hr>
+                </div>
+                <br>
+                <br>
+                <div style="text-align:center;text-decoration: underline;">
+                    <center><h3>CARTA DE COBRANÇA!</h3></center>
+                </div>
+                <br>
+                <br>
+                <div>
+                    
+                   
+                    Prezado Sr.(a)<br>
+                    <div style="text-transform:uppercase; font-size:25px">${nome1}</div>
+                </div>
+                <br>
+                <p>
+                   <span> Não consta em nosso registro, o pagamento de sua(s) mensalidade(s) vencida(s).</span>
+                   <br>
+                   <br>
+                   <span>Como não recebemos nenhuma comunicação sobre os motivos de atraso, solicitamos que entre em contato o quanto antes para negociações</span>
+                   <br>
+                   <br>
+                   <br>
+                   <span  style="font-family: 'Nunito Sans', sans-serif;"><b>CASO JÁ TENHA EFETUADO O PAGAMENTO, FAVOR DESCONSIDERAR ESTA CARTA!</b></span>
+                   <br><br><br>Atenciosamente,<br><br><br>DIREÇÃO DA NEWFIBER<br>(37) 3226-9519.
+                </p>
+                <br>
+                <br>
+                <span style="font-size:15px">Itaúna, ${dia} de ${mes} de 2023</span>
+            </div>
+            `;
+    
+            // Imprimir a primeira mensagem
+            imprimirMensagem(mensagem1);
+    
+            // Mensagem para o Cliente 1
+            var mensagem2 = document.querySelector(".mensagem2");
+            mensagem2.innerHTML = `
+            <div style="font-family: 'Times New Roman', Times, serif;font-size:20px;" class="container">
+                <br>
+                <div style="text-transform:uppercase;text-align:center; font-size:20px; font-family: 'Courier New';">
+                     
+                    ${nome1}<br>
+                    ${endereco1}
+                    <hr>
+                </div>
+                <br>
+                <br>
+                <div style="text-align:center;text-decoration: underline;">
+                    <center><h3>CARTA DE COBRANÇA!</h3></center>
+                </div>
+                <br>
+                <div>
+                    
+                   
+                    Prezado Sr.(a)<br>
+                    <div style="text-transform:uppercase; font-size:25px">${nome1}</div>
+                </div>
+                <br>
+                <p>
+                   <span> Não consta em nosso registro, o pagamento de sua(s) mensalidade(s) vencida(s).</span>
+                   <br>
+                   <br>
+                   <span>Como não recebemos nenhuma comunicação sobre os motivos de atraso, solicitamos que entre em contato o quanto antes para negociações</span>
+                   <br>
+                   <br>
+                   <span  style="font-family: 'Nunito Sans', sans-serif;"><b>CASO JÁ TENHA EFETUADO O PAGAMENTO, FAVOR DESCONSIDERAR ESTA CARTA!</b></span>
+                   <br><br><br>Atenciosamente,<br><br>DIREÇÃO DA NEWFIBER<br>(37) 3226-9519.
+                </p>
+                <br>
+                <span style="font-size:15px">Itaúna, ${dia} de ${mes} de 2023</span>
+            </div>
+            `;
+    
+            // Imprimir a primeira mensagem
+            imprimirMensagem(mensagem2);
+    
+            // Mensagem para o Cliente 2
+            var mensagem3 = document.querySelector(".mensagem3");
+            mensagem3.innerHTML = `
+       
+            <div style="font-family: 'Times New Roman', Times, serif; font-size: 18px;" class="container">
+                <br><br>
+                <div style="text-align: center; text-transform:uppercase;font-size: 20px; font-family: 'Courier New';">
+                    ${nome1}<br>
+                    ${endereco1}<hr>
+                </div>
+                <br><br>
+                <div style="text-align: center; text-decoration: underline; d-block">
+                    <h3>CARTA DE UPGRADE NEWFIBER!</h3>
+                    <span style="text-decoration: none;">Aumento de velocidade</span>
+                </div>
+                <br><br>
+                <div>
+                    Prezado Sr.(a)<br>
+                    <div style="text-transform: uppercase; font-size: 25px">${nome1}</div>
+                </div>
+                <br>
+                <p>
+                    Espero que esteja bem. Agradecemos por ser um cliente da NewFiber. Queremos falar sobre uma oportunidade de melhoria na sua conexão de internet no endereço ${endereco1}. Um upgrade (Aumento de velocidade) pode tornar sua conexão mais rápida e estável. Se tiver dúvidas, ligue ou envie uma mensagem. Estamos aqui para ajudar. Obrigado por confiar em nós.<br><br>Atenciosamente,<br><br>DIREÇÃO DA NEWFIBER<br>(37) 3226-9519.
+                </p>
+                <br>
+                <span style="font-size: 15px">Itaúna, ${dia} de ${mes} de 2023</span>
+            </div>
+            
+            `;
+    
+            // Imprimir a segunda mensagem
+            imprimirMensagem(mensagem3);
+    
+            // Imprimir as mensagens de boletos
+            var printContents = document.querySelector(".printableArea").innerHTML;
+            var originalContents = document.body.innerHTML;
+    
+            document.body.innerHTML = printContents;
+    
+    
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+    
+</body>
+</html>
