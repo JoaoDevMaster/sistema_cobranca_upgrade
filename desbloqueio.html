@@ -134,6 +134,14 @@
         </div>
 
     <section id="reportForm">
+              <div class="mb-3">
+            <label for="relatorio">Dia que o relatorio foi gerado</label>
+            <input type="date"  id="data" class="form-control" required>
+        </div>
+              <div class="mb-3">
+            <label for="days">Dias desbloqueados:</label>
+            <input type="number" placeholder="Dias dados de desbloqueio" id="days" class="form-control" required>
+        </div>
         <div class="mb-3">
             <label for="name">Nome do cliente:</label>
             <input type="text" placeholder="Nome do cliente" id="name" class="form-control" required>
@@ -169,7 +177,7 @@
     </section>
 </div>
     <section id="generatedReport">
-        <h2 >Relatórios de Exceções - <span id="title"></span><script>var title = document.getElementById("title"); title.innerHTML = `${new Date().toLocaleDateString()}`;</script></h2>
+     
 
 
         <table class="table">
@@ -197,8 +205,11 @@
             var days = document.getElementById('days').value;
             var day = document.getElementById('day').value;
             var operator = document.getElementById('operator').value;
+            var data = document.getElementById("data").value
 
             var reportContent = `
+            <h2 >Relatórios de Exceções - ${data}</h2>
+            
                 <tr>
                     <td>${name}</td>
                     <td>${days}</td>
