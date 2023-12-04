@@ -118,6 +118,7 @@
         .header{
             visibility: hidden;
             position: absolute;
+
        }
     </style>
     <title>NewFiber Relatório</title>
@@ -126,19 +127,18 @@
 <body >
     <div class="container">
         <header>
-            <img src="https://github.com/JoaoDevMaster/newfiber_documents/blob/main/Preocura-se_tecnico_de_rua__1_-removebg-preview%20(3).png?raw=true" alt="NewFiber Logo">
-            <h1>Exceções em Conexões</h1>
+            <h1 style="text-align: center;">Relatorio de desbloqueio em conexões</h1>
         </header>
         <div class="header">
             <img src="https://github.com/JoaoDevMaster/newfiber_documents/blob/main/Preocura-se_tecnico_de_rua__1_-removebg-preview%20(2).png?raw=true" alt="NewFiber Logo">
         </div>
 
     <section id="reportForm">
-              <div class="mb-3">
+        <div class="mb-3">
             <label for="relatorio">Dia que o relatorio foi gerado</label>
             <input type="date"  id="data" class="form-control" required>
         </div>
-              <div class="mb-3">
+        <div class="mb-3">
             <label for="days">Dias desbloqueados:</label>
             <input type="number" placeholder="Dias dados de desbloqueio" id="days" class="form-control" required>
         </div>
@@ -187,7 +187,7 @@
                     <th scope="col">Dias Desb</th>
                     <th scope="col">Dia do Desbloqueio</th>
                     <th scope="col">Operador</th>
-                    <th scope="col">Data de Geração</th>
+                    <th scope="col">Geração do relatorio:</th>
                 </tr>
             </thead>
             <tbody id="reportTableBody">
