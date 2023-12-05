@@ -174,7 +174,12 @@
     </section>
 </div>
     <section id="generatedReport">
-            <h2>Relatórios de Exceções <span id="data_insert"><script> var data_insert = document.getElementById('data_insert').value  var date = document.getElementById('data').value data_insert.innerHTML = '${date}' </script></span></h2> 
+          <h2>Relatórios de Exceções <span id="data_insert"></span></h2> 
+
+<script>
+    document.getElementById('data_insert').innerHTML = new Date().toLocaleDateString();
+</script>
+
 
 
         <table class="table">
@@ -197,26 +202,26 @@
 
 
     <script>
-        function generateReport() {
-            var name = document.getElementById('name').value;
-            var days = document.getElementById('vezes').value;
-            var day = document.getElementById('day').value;
-            var operator = document.getElementById('operator').value;
- 
-            var reportContent = `
-            
-                <tr>
-                    <td>${name}</td>
-                    <td>${days}</td>
-                    <td>${day}</td>
-                    <td>${operator}</td>
-                    <td>${data}</td>
-                </tr>
-            `;
+function generateReport() {
+    var name = document.getElementById('name').value;
+    var days = document.getElementById('vezes').value;
+    var day = document.getElementById('days').value; // Corrected id to 'days'
+    var operator = document.getElementById('operator').value;
 
-            // Adiciona a linha à tabela
-            document.getElementById('reportTableBody').innerHTML += reportContent;
-        }
+    var reportContent = `
+        <tr>
+            <td>${name}</td>
+            <td>${days}</td>
+            <td>${day}</td>
+            <td>${operator}</td>
+            <td>${new Date().toLocaleDateString()}</td>
+        </tr>
+    `;
+
+    // Adiciona a linha à tabela
+    document.getElementById('reportTableBody').innerHTML += reportContent;
+}
+
 
         function printReport() {
             window.print();
