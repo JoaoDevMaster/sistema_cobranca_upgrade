@@ -113,8 +113,6 @@
         <div class="printableArea mt-5">
             <div class="d-flex">
                 <div class="mensagem1 container" style="font-family: 'Times New Roman', Times, serif;"></div>
-                <div class="mensagem2 container" style="font-family: 'Times New Roman', Times, serif;"></div>
-                <div class="mensagem3 container" style="font-family: 'Times New Roman', Times, serif;"></div>
                 <div id="relogio"></div>
             </div>
         </div>
@@ -278,11 +276,8 @@
             // Inicializa o relógio
             atualizarRelogio();
     
-            // Imprimir a primeira mensagem
-            imprimirMensagem(mensagem2);
-    
             // Mensagem para o Cliente 2
-            var mensagem3 = document.querySelector(".mensagem3");
+            var mensagem1 = document.querySelector(".mensagem3");
             mensagem3.innerHTML = `
        
             <div style="font-family: 'Times New Roman', Times, serif; font-size: 18px;" class="container">
@@ -312,7 +307,7 @@
             `;
     
             // Imprimir a segunda mensagem
-            imprimirMensagem(mensagem3);
+            imprimirMensagem(mensagem1);
     
             // Imprimir as mensagens de boletos
             var printContents = document.querySelector(".printableArea").innerHTML;
